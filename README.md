@@ -1,2 +1,1 @@
-#!/bin/bash
-This is my readme
+Compulsory README file for Alx Systems engineering devops
