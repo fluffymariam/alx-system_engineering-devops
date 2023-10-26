@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-# Diormat, showing only names after the first dash.
+# Dit format, showing only names after the first dash.
 
-# Use a for loop to iterate through the files in the current directory
-for file in $(ls | grep -v '^\..*') # Exclude hidden files
-do
+# Usrough files (excluding hidden files)
+for file in *[!.-]*; do
     # Extract the part of the name after the first dash
     name=$(echo "$file" | cut -d'-' -f2-)
     echo "$name"
