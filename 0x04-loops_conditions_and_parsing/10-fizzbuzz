@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Displays numbers from 1 to 100 with FizzBuzz conditions.
+
+# Use a for loop to iterate through numbers from 1 to 100
+for number in {1..100}
+do
+    # Check for FizzBuzz condition (multiple of 3 and 5)
+    if [ $((number % 3)) -eq 0 ] && [ $((number % 5)) -eq 0 ]; then
+        echo "FizzBuzz"
+    # Check for Fizz condition (multiple of 3)
+    elif [ $((number % 3)) -eq 0 ]; then
+        echo "Fizz"
+    # Check for Buzz condition (multiple of 5)
+    elif [ $((number % 5)) -eq 0 ]; then
+        echo "Buzz"
+    # Display the number for other cases
+    else
+        echo "$number"
+    fi
+done
