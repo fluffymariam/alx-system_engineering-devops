@@ -2,4 +2,4 @@
 # This script stops the 4-to_infinity_and_beyond process
 # Finding the process ID (PID) of 4-to_infinity_and_beyond and sending a termination signal
 
-kill "$(pgrep -f "4-to_infinity_and_beyond")"
+kill "$(pgrep -f 4-to_infinity_and_beyond)"
