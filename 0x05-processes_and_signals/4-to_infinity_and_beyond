@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
-# This script displays "To infinity and beyond" indefinitely wth sleep of 2 sec each iteration
+# This script displays "To infinity and beyond" indefinitely wth 
+#+ sleep of 2 sec each iteration
 
 while true
 do
