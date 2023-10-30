@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# This script displays lines containing the word "bash"
+# and extracts the PID of the Bash process.
+# Using ps command to list processes containing the word "bash"
+
+ps aux | grep bash
