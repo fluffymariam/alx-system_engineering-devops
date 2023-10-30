@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script stops the 7-highlander process
+# Finding the process ID (PID) of 7-highlander and sending SIGTERM signal using pkill
+
+pkill -f "7-highlander"
