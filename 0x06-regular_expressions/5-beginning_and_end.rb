@@ -5,7 +5,7 @@ input = ARGV[0]
 
 # Regular expression to match strings starting with "h," ending with "n,"
 # and having any single character in between
-pattern = /^hn$/
+pattern = /^h.n$/
 
 # Check if the input matches the pattern
 if input.match(pattern)
