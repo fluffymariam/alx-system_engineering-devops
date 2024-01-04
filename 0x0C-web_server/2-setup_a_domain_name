@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# This script sets up a domain name and configures DNS records.
+
+# Set your obtained domain name here
+DOMAIN="example.tech"
+
+# Set your web server IP address here
+WEB_SERVER_IP="102.88.71.147"
+
+# Configure DNS records (A entry pointing to the web server IP)
+# This command will vary based on your DNS provider
+# Example using 'nsupdate', replace with actual DNS provider commands
+nsupdate << EOF
+server 8.8.8.8  # Replace with your DNS server
+zone tech  # Replace 'tech' with your domain extension
+update add $DOMAIN. 3600 A $WEB_SERVER_IP
+send
+EOF
+
+# Verify registrar details using whois
+WHOIS_RESPONSE=$(whois -J $DOMAIN)
+REGISTRAR=$(echo $WHOIS_RESPONSE | jq -r '.WhoisRecord.registrarName')
+
+# Check if the registrar is Dotserve Inc
+if [[ "$REGISTRAR" == "Dotserve Inc" ]]; then
+    echo "Registrar verified: Dotserve Inc"
+else
+    echo "Registrar verification failed"
+fi
