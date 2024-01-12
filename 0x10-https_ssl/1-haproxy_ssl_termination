@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# This is the HAProxy configuration file for SSL termination
+
+# Global settings
+global
+    log /dev/log local0
+    log /dev/log local1 notice
+    chroot /var/lib/haproxy
+    stats socket /run/haproxy/admin.sock mode 660 level admin
+    stats timeout 30s
+    user haproxy
+    group haproxy
+    daemon
+
+# Default SSL material locations
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    timeout connect 5000
+    timeout client  50000
+    timeout server  50000
+
+# Frontend configuration
+frontend www-frontend
+    bind *:80
+    bind *:443 ssl crt /etc/ssl/certs/holberton.online.pem
+    reqadd X-Forwarded-Proto:\ https
+    acl is_ssl hdr_end(host) -i www.holberton.online
+    use_backend www-backend if is_ssl
+
+# Backend configuration
+backend www-backend
+    server web-01 127.0.0.1:80 check
+
