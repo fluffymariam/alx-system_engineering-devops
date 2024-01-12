@@ -5,3 +5,4 @@ apt-get update
 apt-get install -y nginx
 echo -e "listen 80;\n" | tee -a /etc/nginx/sites-available/default
 service nginx restart
+
