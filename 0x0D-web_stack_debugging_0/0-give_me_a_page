@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# This script fixes the Apache server configuration to return a page containing "Hello Holberton".
+
+# Start a Docker container from the given image, mapping port 8080 on host to port 80 in the container
+docker run -p 8080:80 -d -it holbertonschool/265-0
+
+# Get the ID of the running container
+CONTAINER_ID=$(docker ps -q)
+
+# Access the container's shell
+docker exec -it "$CONTAINER_ID" /bin/bash
+
+# Inside the container, access the Apache default HTML directory and create an index.html file
+echo "Hello Holberton" > /var/www/html/index.html
+
+# Exit the container's shell
+exit
+
+# Restart the Docker container for changes to take effect
+docker restart "$CONTAINER_ID"

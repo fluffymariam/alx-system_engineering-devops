@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# This script installs and configures NGINX on an Ubuntu machine.
+
+# Update package lists and install NGINX
+apt-get update
+apt-get install -y nginx
+
+# Start NGINX (if not started automatically)
+/usr/sbin/nginx
+
+# Check if NGINX is listening on port 80
+if ! nc -z localhost 80; then
+    echo "NGINX is not listening on port 80" >&2
+    exit 1
+fi
+
+# Create a simple HTML file with 'Hello World!' content
+echo "Hello World!" > /usr/share/nginx/html/index.html
+
+# Restart NGINX without using systemctl
+kill -s HUP $(pgrep nginx)
+
+# Test NGINX response with curl
+if ! curl -s localhost | grep -q "Hello World!"; then
+    echo "NGINX did not return 'Hello World!' as expected" >&2
+    exit 1
+fi
